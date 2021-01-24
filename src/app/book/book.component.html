@@ -1,0 +1,150 @@
+<div class="book-page container-fluid">
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <h3>TKS</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/orders">Your Orders</a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/profile">{{un}}</a></h5>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="booking row">
+    
+        <div class="add-item col-md-3">
+
+            <form [formGroup]="angform" class="form">
+
+                <div class="form-control-group">
+                    <label for="item">Select Item</label>
+                    <select [ngClass]="{'err':submitted && f.itemsel.errors && f.itemsel.errors!.required}" formControlName="itemsel" id="item" class="ddselect" (change)="price()">
+                        <option value="" checked>Select item to buy</option>
+                        <option value="Gravels">Gravels</option>
+                        <option value="Sand">Sand</option>
+                        <option value="Cement">Cement</option>
+                    </select>
+                    <div *ngIf="submitted && f.itemsel.errors">
+                        <div *ngIf="f.itemsel.errors!.required">
+                            <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please select an item</span>
+                            </i>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-group">
+                    <label for="quantity">Quantity(in tons)</label>
+                    <input [ngClass]="{'err':submitted && f.quantity.errors && f.quantity.errors!.required}" type="number" formControlName="quantity" value="1" (change)="price()" name="quantity" id="quantity" min="1">
+                    <div *ngIf="submitted && f.quantity.errors">
+                        <div *ngIf="f.quantity.errors!.required">
+                            <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please Enter Quantity</span>
+                            </i>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-group">
+                    <label for="address">Address</label>
+                    <input [ngClass]="{'err':submitted && f.address.errors && f.address.errors!.required}" formControlName= "address" type="text" name="address" id="address" placeholder="No., Street, Loaclity">
+                
+                    <div *ngIf="submitted && f.address.errors">
+                        <div *ngIf="f.address.errors!.required">
+                            <i style="color:red ; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please Enter your Address</span>
+                            </i>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-group">
+                    <label for="area">Area</label>
+                    <select [ngClass]="{'err':submitted && f.area.errors && f.area.errors!.required}" formControlName="area" class="area" id="area">
+                        <option value="">Select area</option>
+                        <option value="Nallur">Nallur</option>
+                        <option value="Rakkiyapalayam">Rakkiyapalayam</option>
+                        <option value="Vijayapuram">Vijayapuram</option>
+                        <option value="Maniyakarampalayam">Maniyakarampalayam</option>
+                        <option value="Amarjothi">Amarjothi</option>
+                    </select>
+                    <div *ngIf="submitted && f.area.errors">
+                        <div *ngIf="f.area.errors!.required">
+                            <i style="color:red ;margin-top: 10px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please select your Area</span>
+                            </i>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-group">
+                    <label for="time">Delivery Date</label>
+                    <input [ngClass]="{'err':submitted && f.date.errors && f.date.errors!.required}" formControlName="date" type="date" name="time" id="time">
+                    <div *ngIf="submitted && f.date.errors">
+                        <div *ngIf="f.date.errors!.required">
+                            <i style="color:red ; margin-top: 10px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please select a Date</span>
+                            </i>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-group">
+                    <div class="estprice">Estimated Price</div>
+                    <div class="estprice" id="estp">Rs.{{est}}.00</div>
+                </div>
+
+                <button type="submit" (click)="add($event)" class="btn btn-md">+ Add Item To List</button>
+        
+            </form>
+        
+        </div>
+    
+        <div class="col-md-1"></div>
+    
+        <div class="added col-md-3">
+            <div class="total-title">
+                <h5>Your List</h5>
+                <h5><div class="total">Total: <span style="color:limegreen">Rs.{{totpr}}.00</span></div></h5>
+            </div>
+            <div class="book">
+                <div *ngIf="Items.length > 0; else noItem">
+                        <div class="new-item"  *ngFor="let it of Items;let in = index">
+                            <div class="items">
+                                <div class="item-name"><b>Item</b>: {{it.typeselected}}</div>
+                                <div class="item-quantity"><b>Quantity</b>: {{it.quantity}}</div>
+                                <div class="item-address"><b>Address</b>: {{it.address}}</div>
+                                <div class="item-area"><b>Area</b>: {{it.area}}</div>
+                                <div class="item-time"><b>Delivery</b>: {{it.date}}</div>
+                                <div class="item-time"><b>Price</b>: Rs {{it.price}}.00</div>
+                            </div>
+                            <div class="delete-btn">
+                                <button class="btn btn-sm btn-danger" (click)="delete(it.id)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                <ng-template #noItem>Add Items to View Your List Here</ng-template>
+            </div>
+            <div *ngIf="Items.length == 0; else enable">
+                <button class="btn or" disabled>Place Order</button>
+            </div>
+            <ng-template #enable>
+                <button class="btn or" (click)="makeOrder()">Place Order</button>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-fluid login">
+    
+        <div style="display:none" id="nope" class="alert alert-warning" role="alert">
+            Login <strong>Mobile Number/ Password</strong> is Invalid!
+        </div>
+
+    <div class="login-container">
+        <h5>Welcome Back !</h5>
+        <form [formGroup]="loginform" class="form" action="">
+        
+            <div class="form-control-group">
+                <label for="phone">Mobile Number</label>
+                <input formControlName="phone" type="text" name="phone" id="phone" required>
+                <div *ngIf="(f.phone.touched || submitted) && f.phone.errors">
+                    <div *ngIf="f.phone.errors!.required">
+                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter your phone number</span>
+                        </i>    
+                    </div>
+                </div>
+            </div>
+        
+            <div class="form-control-group">
+                <label for="pass">Password</label>
+                <input formControlName="pass" type="password" name="password" id="pass" required>
+                <div *ngIf="(f.pass.touched || submitted) && f.pass.errors">
+                    <div *ngIf="f.pass.errors!.required">
+                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter password</span>
+                        </i>    
+                    </div>
+                </div>
+            </div>
+        
+            <button (click)="log($event)" class="btn btn-md" type="submit">LOGIN</button>
+
+            <div class="other">
+                <p>Forgot Password? <a routerLink="forgot">click here</a></p>
+                <p>New User? <a routerLink="register">Create new account</a></p>
+            </div>
+        </form>
+    </div>
+</div>

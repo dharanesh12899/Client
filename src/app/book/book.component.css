@@ -1,0 +1,157 @@
+.book-page{
+    padding: 0;
+    height:100%;
+}
+
+.navbar-nav{
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+
+}
+
+li{
+    margin-left: 15px;
+    height:50px;
+    justify-content: space-around;
+}
+
+li:hover{
+    border-bottom: 1px solid red;
+}
+
+.book-page .booking{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(246, 248, 252);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.booking .add-item{
+    background-color: white;
+    margin-top: 20px;
+    height: fit-content;
+    padding: 20px 45px;
+    border-radius: 4px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    width:400px;
+}
+
+.booking .add-item .form-control-group{
+    display: flex;
+    flex-direction: column;
+    margin-top:15px;
+}
+
+.form-control-group input{
+    outline:none;
+    height:35px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.form-control-group input:focus{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.form-control-group select{
+    outline:none;
+    height:35px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.form-control-group select:focus{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.form .btn{
+    margin-top: 15px;
+    width:100%;
+    background-color: #fcb654;
+
+}
+
+.form .btn:hover{
+    background-color: #ff7c1f;
+}
+
+.added{
+    background-color: white;
+    margin-top: 20px;
+    height: fit-content;
+    width: 400px;
+    padding: 20px 45px;
+    border-radius: 4px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    max-width:400px;
+}
+
+.added .total-title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-weight: bolder;
+}
+
+.added .book{
+    display: flex;
+    flex-direction: column;
+    max-height: 415px;
+    overflow: auto;
+    padding: 0px 10px;
+}
+
+
+.added .book .new-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px groove gray;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.added .book .new-item .delete-btn{
+    margin-left: 5px;
+}
+
+
+.added .btn.or{
+    margin-top: 15px;
+    width:100%;
+    background-color: #fcb654;
+
+}
+
+.added .btn.or:hover{
+    background-color: #ff7c1f;
+}
+
+a{
+    cursor: pointer;
+}
+
+.btn:focus{
+    outline:none;
+    box-shadow: none;
+}
+
+.er{
+    display :flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px;
+}
+
+.err{
+    border:1px solid red;
+}
