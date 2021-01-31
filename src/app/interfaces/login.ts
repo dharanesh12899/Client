@@ -1,4 +1,5 @@
 export interface Login {
-    userid:string;
+    phone:number;
     password:string;
+    username:string;
 }

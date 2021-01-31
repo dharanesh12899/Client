@@ -1,13 +1,14 @@
 .book-page{
     padding: 0;
     height:100%;
+    background-color: rgb(246, 248, 252);
+    overflow: auto;
 }
 
 .navbar-nav{
     justify-content: space-between;
     align-items: center;
     height: auto;
-
 }
 
 li{
@@ -24,9 +25,8 @@ li:hover{
     position: relative;
     display: flex;
     justify-content: center;
-    background-color: rgb(246, 248, 252);
     min-height: 100vh;
-    padding: 0;
+    padding: 10dp;
     margin: 0;
 }
 
@@ -36,7 +36,7 @@ li:hover{
     height: fit-content;
     padding: 20px 45px;
     border-radius: 4px;
-    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
     width:400px;
 }
 
@@ -90,7 +90,7 @@ li:hover{
     width: 400px;
     padding: 20px 45px;
     border-radius: 4px;
-    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
     max-width:400px;
 }
 
@@ -154,4 +154,102 @@ a{
 
 .err{
     border:1px solid red;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: rgba(11, 187, 11, 0.808);
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    left:25%;
+    z-index: 1;
+    bottom: 50px;
+    font-size: 17px;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 50px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 50px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 50px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+@media only screen and (max-width:400px){
+    .book-page .booking{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 10dp;
+        margin: 0;
+        font-size: 14px;
+        padding:0px 15px;
+        margin-bottom:25px;
+    }
+    
+    .added .total-title{
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 12px;
+        flex-direction: column;
+        font-weight: bolder;
+    }
+
+    option{
+        width:250px;
+    }
+}
+
+@media only screen and (max-width:768px) and (min-width:400px){
+    .book-page .booking{
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        float: left;
+        min-height: 100vh;
+        padding: 10dp;
+        margin: 0;
+        width: 170%;
+        font-size: 12px;
+        padding:0px 10px;
+        margin-bottom:25px;
+    }
+    
+    .added .total-title{
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 12px;
+        flex-direction: column;
+        font-weight: bolder;
+    }
+
+    option{
+        width:250px;
+    }
 }

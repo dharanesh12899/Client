@@ -1,13 +1,16 @@
 .profile-page{
     padding: 0;
     height:100%;
+    margin:0;
+    overflow-x:hidden;
+    background-color: rgb(246, 248, 252);
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .navbar-nav{
     justify-content: space-between;
     align-items: center;
     height: auto;
-
 }
 
 li{
@@ -22,4 +25,238 @@ li:hover{
 
 a{
     cursor: pointer;
+}
+
+.user{
+    position: relative;
+    min-height: 100vh;
+    padding: 10px;
+    margin: 0;
+}
+
+.user .des{
+    background-color: rgb(246, 248, 252);
+    padding: 0px 50px;
+    height: 100%;
+}
+
+.user .des .up{
+    margin-top: 20px;
+    float:left;
+    margin-left: 50px;
+}
+
+.user .des .up .unp{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.udp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 115px;
+    width:115px;
+    float: left;
+    border-radius: 50%;
+    background-color: rgb(253, 195, 70);
+    font-size: 88px;
+    color: rgb(90, 32, 11);
+}
+
+.us{
+    position: relative;
+    display: block;
+    width:300px;
+    height: fit-content;
+}
+
+.us .uset{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.us .uset .s{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width:100%;
+    background-color: beige;
+    margin-top: 5px;
+}
+
+.us .uset .s:hover{
+    border-right:5px solid gold;
+}
+
+.us .uset .s .ico{
+    padding:5px 10px;
+    border-right:1px solid gray;
+}
+
+.us .uset .s .sn{
+    padding:10px;
+}
+
+.udes{
+    margin-top: 70px;
+    margin-left: 40px;
+    display: flex;
+    padding:10px;
+}
+
+.heading{
+    position: relative;
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 10px 25px;
+}
+
+.content{
+    padding: 10px 55px;
+}
+
+.content .row .valcon{
+    float:left;
+    margin:10px 50px;
+    font-size: 18px;
+    width:100%;
+}
+
+.val{
+    border: none;
+    background-color: white;
+    padding: 10px 10px;
+    min-width:300px;
+    max-width: fit-content;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
+}
+
+input{
+    background-color: white;
+    border:none;
+    padding: 10px 10px;
+    width:300px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
+}
+
+input:focus{
+    outline:none;
+}
+
+@media only screen and (max-width:768px){
+ 
+    .des{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user .des .up{
+        margin-top: 20px;
+        float:left;
+        margin-left: 10px;
+    }
+
+    .us .uset{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    .us .uset .s{
+        display: flex;
+        flex-direction: column;
+    }
+    .us .uset .s .ico{
+        padding:5px 70px;
+        border-bottom:1px solid gray;
+        border-right:none ;
+    }
+    .pro{
+        padding: 10px 50px;
+    }
+}
+
+@media only screen and (max-width:420px){
+ 
+    .des{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user .des .up{
+        margin-top: 20px;
+        float:left;
+        padding: 0px 5px;
+    }
+
+    .us .uset{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    .us .uset .s{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100px;
+    }
+
+    .us .uset .s .sn{
+        min-height: 80px;
+    }
+    .us .uset .s .ico{
+        padding:5px 30px;
+        border-bottom:1px solid gray;
+        border-right:none ;
+    }
+    .pro{
+        margin-left: -100px;
+    }
+    .heading{
+        position: relative;
+        font-size: 20px;
+        font-weight: bolder;
+        margin: 10px 0px;
+    }
+
+    .content{
+        padding: 10px 5px;
+    }
+
+    .content .row .valcon{
+        float:left;
+        margin:10px 20px;
+        font-size: 16px;
+        width:150%;
+    }
+
+    .val{
+        border: none;
+        background-color: white;
+        padding: 10px 10px;
+        min-width:120%;
+        max-width: fit-content;
+        border-radius: 5px;
+        box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
+    }
+    input{
+        background-color: white;
+        border:none;
+        padding: 10px 10px;
+        width:120%;
+        border-radius: 5px;
+        box-shadow: 1px 2px 10px rgba(158, 157, 157, 0.2);
+    }
 }

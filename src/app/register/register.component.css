@@ -44,6 +44,16 @@
     color: white;
 }
 
+input{
+    height:35px;
+    outline:none;
+    border-top-left-radius: 5px;
+    border-radius: 5px;font-size: 18px;
+    border: 1px solid black;
+    width:100%;
+}
+
+
 .form .btn{
     margin-top: 15px;
     width:100%;
@@ -69,4 +79,30 @@ a{
 }
 a:hover{
     color: #ff7c1f;
+}
+
+
+@media only screen and (max-width:400px){
+    .login{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgb(246, 248, 252);
+        height: 100%;
+        width:100%;
+        padding:0px 10px;
+    }
+    
+    .login .login-container{
+        background-color: white;
+        margin-top: 50px;
+        height: fit-content;
+        padding: 20px 30px;
+        font-size: 14px;
+        border-radius: 4px;
+        box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+        width:350px;
+    }
+    
 }

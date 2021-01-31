@@ -9,10 +9,10 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
+                    <h5><a class="nav-link" routerLink="/book"><strong>Book</strong> <span class="sr-only">(current)</span></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/orders">Your Orders</a></h5>
+                    <h5><a class="nav-link" routerLink="/orders">My Orders</a></h5>
                 </li>
                 <li class="nav-item">
                     <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
@@ -118,7 +118,7 @@
     
         <div class="added col-md-3">
             <div class="total-title">
-                <h5>Your List</h5>
+                <h5 id="h">Your List</h5>
                 <h5><div class="total">Total: <span style="color:limegreen">Rs.{{totpr}}.00</span></div></h5>
             </div>
             <div class="book">
@@ -129,7 +129,7 @@
                                 <div class="item-quantity"><b>Quantity</b>: {{it.quantity}}</div>
                                 <div class="item-address"><b>Address</b>: {{it.address}}</div>
                                 <div class="item-area"><b>Area</b>: {{it.area}}</div>
-                                <div class="item-time"><b>Delivery</b>: {{it.date}}</div>
+                                <div class="item-time"><b>Delivery</b>: {{it.deliverydate}}</div>
                                 <div class="item-time"><b>Price</b>: Rs {{it.price}}.00</div>
                             </div>
                             <div class="delete-btn">
@@ -143,8 +143,10 @@
                 <button class="btn or" disabled>Place Order</button>
             </div>
             <ng-template #enable>
-                <button class="btn or" (click)="makeOrder()">Place Order</button>
+                <button id="place" class="btn or" (click)="makeOrder()">Place Order</button>
             </ng-template>
         </div>
+
     </div>
+    <div id="snackbar">Your order has been placed successfully!! Go to Your Orders page to view more details</div>
 </div>

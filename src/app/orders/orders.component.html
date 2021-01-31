@@ -12,7 +12,7 @@
                     <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/orders">Your Orders</a></h5>
+                    <h5><a class="nav-link" routerLink="/orders"><strong>My Orders</strong></a></h5>
                 </li>
                 <li class="nav-item">
                     <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
@@ -23,7 +23,76 @@
             </ul>
         </div>
     </nav>
-    <div>
-        Orders Work
+
+    <div class="orders">            
+        <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="loading==true else continue" class="current">
+            <div><i class="fa fa-spinner fa-pulse"></i></div>
+            <div><i class='fa fa-boxes'></i></div>
+            <div>Loading...</div>
+        </div>
+        <ng-template #continue>
+        <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="or.length<1" class="current">
+            <div><i class="ri-cloud-windy-line"></i></div>
+            <div>Nothing to show yet!!</div> 
+            <div>Order something to load our trucks!!</div>
+        </div>
+
+        <div *ngFor="let i of or" class="current">
+
+                <div class="col-md-3 one">
+                    <div class="lab">{{i.id}}</div>
+                    <div class="fet"><strong>{{i.item}}</strong></div>
+                </div>
+
+                <div class="col-md-3 two">
+                    <div class="lab">ORDERED ON</div>
+                    <div class="fet">{{i.order}}</div>
+                </div>
+
+                <div *ngIf="i.status =='Approved'" class="col-3 three">
+                    <div class="lab">STATUS</div>
+                    <div class="fet ongoing"><strong>{{i.status}}</strong></div>
+                </div>
+
+                <div *ngIf="i.status =='Processing'" class="col-3 four">
+                    <div class="lab">STATUS</div>
+                    <div class="fet processing"><strong>{{i.status}}</strong></div>
+                </div>
+
+                <div *ngIf="i.status =='Delivered'" class="col-3 five">
+                    <div class="lab">STATUS</div>
+                    <div class="fet delivered"><strong>{{i.status}}</strong></div>
+                </div>
+
+                <div class="col-3 six">
+                    <div class="lab">QUANTITY</div>
+                    <div class="fet">{{i.quantity}} uts</div>
+                </div>
+
+                <div class="col-3 seven">
+                    <div class="lab">ADDRESS</div>
+                    <div class="fet">{{i.address}}</div>
+                </div>
+
+                <div class="col-3 eight">
+                    <div class="lab">AREA</div>
+                    <div class="fet">{{i.area}}</div>
+                </div>
+          
+                <div class="col-3 nine">
+                    <div class="lab">PRICE</div>
+                    <div class="fet price"><strong>Rs. {{i.price}}</strong></div>
+                </div>
+
+                <div *ngIf="(i.status=='Processing'|| i.status=='Approved')" class="col-3 ten" >
+                    <div class="lab">Delivery date </div>
+                    <div class="fet">{{i.date}}</div>
+                </div>
+
+                <div *ngIf="i.status=='Delivered'" class="col-3 ten" >
+                    <div class="lab">Delivered on </div>
+                    <div class="fet">{{i.date}}</div>
+                </div>
     </div>
+    </ng-template>
 </div>

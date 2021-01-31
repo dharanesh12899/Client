@@ -12,18 +12,175 @@
                     <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/orders">Your Orders</a></h5>
+                    <h5><a class="nav-link" routerLink="/orders">My Orders</a></h5>
                 </li>
                 <li class="nav-item">
                     <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/profile">{{un}}</a></h5>
+                    <h5><a class="nav-link" routerLink="/profile"><strong>{{un}}</strong></a></h5>
                 </li>
             </ul>
         </div>
     </nav>
-    <div>
-        Profile Works
+    
+    <div class="user">
+        
+        <div style="display:none" id="succ" class="alert alert-success" role="alert">
+            Password <strong>change successful!!</strong>
+        </div>
+        
+        <div class="row des">
+            <div class="up">
+                
+                <div class="row unp">
+                    <div class=".col-md-3 udp">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <div class="pn"><p>{{un}}</p></div>
+                </div>
+
+                <div class="row us">
+                    <div class=".col-md-3 uset">
+                        <div style="border-right:5px solid gold;" id="c1" class="s" (click)="c1()">
+                            <div class="ico"><i class="fa fa-user-circle-o"></i></div><div class="sn">Account</div>    
+                        </div>
+                        <div id="c2" class="s" (click)="c2()">
+                            <div class="ico"><i class="fa fa-key"></i></div><div class="sn">Change Password</div>    
+                        </div>
+                        <div id="c3" class="s" (click)="c3()">
+                            <div class="ico"><i class="fa fa-user-times"></i></div><div class="sn">Delete Account</div>    
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class=" col-md udes">
+                <div *ngIf="nv==1" id="pro" class="pro">
+                    <div class="heading">
+                        My Profile
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="valcon">
+                                <p>Username</p>
+                                <div class="val"id="pun">{{un}}</div>
+                            </div>
+                        
+                            <div class="valcon">
+                                <p>Mobile Number</p>
+                                <div class="val" id="pmn">{{ph}}</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="valcon">
+                                <p>Pending Orders</p>
+                                <div *ngIf="loading==true else poolo" class="val" id="ppo"><i class="fa fa-spinner fa-pulse"></i></div>
+                                <ng-template #poolo>
+                                    <div class="val">{{pen}}</div>
+                                </ng-template>
+                            </div>
+
+                            <div class="valcon">
+                                <p>Total Orders</p>
+                                <div *ngIf="loading==true else polo" class="val" id="po"><i class="fa fa-spinner fa-pulse"></i></div>
+                                <ng-template #polo>
+                                    <div class="val">{{tot}}</div>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form [formGroup]="chform" *ngIf="nv==2" id="pro" class="pro">
+                    <div class="heading">
+                        Change Password
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="valcon">
+                                <p>Old Password</p>
+                                <input id="op" formControlName="op" type="password">
+                                <div *ngIf=" submitted && f.op.errors">
+                                    <div *ngIf="f.op.errors!.required">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter a password</span>
+                                        </i>    
+                                    </div>
+                                    <div *ngIf="f.op.errors!.minlength">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span>
+                                        </i>    
+                                    </div>
+                                </div>
+                                <div *ngIf="opcheck==1">
+                                    <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                        <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter your correct current password</span>
+                                    </i>    
+                                </div>
+                            </div>
+                            
+                            <div class="valcon">
+                                <p>New Password</p>
+                                <input formControlName="cnp" type="password" id="cnp">
+                                <div *ngIf=" submitted && f.cnp.errors">
+                                    <div *ngIf="f.cnp.errors!.required">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter a password</span>
+                                        </i>    
+                                    </div>
+                                    <div *ngIf="f.cnp.errors!.minlength">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span>
+                                        </i>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="valcon">
+                                <p>Confirm New Password</p>
+                                <input formControlName="cnpa" type="password" id="cnpa">
+                                <div *ngIf=" submitted && f.cnpa.errors">
+                                    <div *ngIf="f.cnpa.errors!.required">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter a password</span>
+                                        </i>    
+                                    </div>
+                                    <div *ngIf="f.cnpa.errors!.minlength">
+                                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                            <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span>
+                                        </i>    
+                                    </div>
+                                </div>
+                                <div *ngIf="match==1">
+                                    <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                                        <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">passwords dont match</span>
+                                    </i>    
+                                </div>
+                            </div>
+                            <br>
+                            <div class="valcon">
+                                <button type="submit" id="valcon" class="btn btn-lg btn-success" (click)="change($event)">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div *ngIf="nv==3" id="pro" class="pro">
+                    <div class="heading">
+                        Delete Account
+                    </div>
+                    <div class="content">
+                        <p>Once you click on the Delete Account button, your history including the order details, pending orders, current orders, your information, account activity and everything will be lost. Please make sure as you continue.</p>
+                        <button class="btn btn-lg btn-danger" (click)="delacc()">Delete Account</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{FormGroup,FormBuilder,Validators, FormControl, AbstractControl} from '@angular/forms';
 import {Router} from'@angular/router';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -12,6 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerform!: FormGroup;
   submitted=false;
+  
   match:number=0;
 
   constructor(private _router: Router,private fb:FormBuilder) { }
@@ -45,8 +47,21 @@ export class RegisterComponent implements OnInit {
         this.match=1;
       }
       else {
+        (<HTMLButtonElement>document.getElementById("rgb")).disabled=true;
+        (<HTMLButtonElement>document.getElementById("rgb")).innerHTML="Registering your account  <i class='fa fa-spinner fa-pulse'></i>"
+        var user=(<HTMLInputElement>document.getElementById("reguser")).value;
+        var pho=parseInt((<HTMLInputElement>document.getElementById("regmob")).value);
+        console.log(pho);
+        var pass=(<HTMLInputElement>document.getElementById("regpass")).value;
+
         this.match=0;
-        (<HTMLDivElement>document.getElementById("nope")).style.display="block";
+        firebase.database().ref("user/"+pho).set({
+          username:user,
+          phone:pho,
+          password:pass
+        });
+        (<HTMLButtonElement>document.getElementById("rgb")).innerHTML="Account Registered!!!";
+        (<HTMLDivElement>document.getElementById("succ")).style.display="block";
     }
   }
 }

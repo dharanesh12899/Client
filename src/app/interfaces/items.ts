@@ -4,6 +4,7 @@ export interface Items{
     quantity:number;
     address:string;
     area:string;
-    date:string;
-    price:number
+    deliverydate:string;
+    orderdate:string;
+    price:number;
   };

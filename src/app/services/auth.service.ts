@@ -4,11 +4,15 @@ import {Login} from '../interfaces/login';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  constructor() { }
+  constructor() {}
+  
   logout(): void{
     localStorage.setItem('isLoggedIn','false');
-    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('pass');
+    localStorage.removeItem('phone');
   }
 }
