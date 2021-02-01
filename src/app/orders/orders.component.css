@@ -8,7 +8,8 @@
 }
 
 .navbar-nav{
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
     height: auto;
 }
@@ -25,6 +26,10 @@ li:hover{
 
 a{
     cursor: pointer;
+}
+
+.lot{
+    justify-content: flex-end;
 }
 
 .orders{
@@ -75,7 +80,7 @@ a{
     color:rgba(61, 150, 91, 0.884);
 }
 
-i{
+#ic{
     font-size: 48px;
     color:rgba(248, 172, 32, 0.651);
     

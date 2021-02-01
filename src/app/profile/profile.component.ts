@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   tot:number=0;
   pen:number=0;
   loading=true;
+  propic:any;
+  proload=true;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
@@ -30,24 +32,40 @@ export class ProfileComponent implements OnInit {
     this.un = usn;
     this.ph=localStorage.getItem("phone");
     this.pass=localStorage.getItem("pass");
+    this.propic=localStorage.getItem("propic");
    }
 
   ngOnInit(): void {
+    var storage = firebase.storage();
+    var pathReference = storage.ref().child('7010756780/IMG_2526.JPG.jpg');
+    
+    pathReference.getDownloadURL().then((url)=>{
+      this.propic=url;
+    }).catch((error)=>{
+      (<HTMLDivElement>document.getElementById("npp")).setAttribute("class","fa fa-user-circle")
+    })
 
     this.ph=localStorage.getItem("phone");
     firebase.database().ref("/user/"+this.ph).once("value").then((snapshot)=>{
       this.pass=snapshot.val().password;
+      this.proload=false;
     });
+    
     firebase.database().ref("/orderdata/"+this.ph).once("value").then((snapshot)=>{
       snapshot.forEach((child)=>{
         this.tot+=1;
         if(child.val().status!=="Deliverd"){
           this.pen=this.pen+1;
         }
-        this.loading=false;  
+          
       })
-      
-    })
+      this.loading=false;
+      }).catch((error)=>{
+      this.pen=0;
+      this.loading=false;
+      this.tot=0;
+    });
+
     this.chform = this.fb.group({
       op:['',[Validators.required,Validators.minLength(8)]],
       cnp:['',[Validators.required,Validators.minLength(8)]],

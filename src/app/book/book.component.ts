@@ -102,6 +102,7 @@ export class BookComponent implements OnInit {
   makeOrder(){
     (<HTMLButtonElement>document.getElementById("place")).disabled=true;
     (<HTMLButtonElement>document.getElementById("place")).innerHTML="Placing your order!  <i class='fa fa-spinner fa-pulse'></i>";
+    
     for(let i=0;i<this.Items.length;i++){
     firebase.database().ref("orderdata/"+this.phone+"/"+this.Items[i].id).set({
       address:this.Items[i].address,

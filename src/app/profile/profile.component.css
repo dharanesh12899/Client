@@ -66,6 +66,12 @@ a{
     color: rgb(90, 32, 11);
 }
 
+.udp img{
+    border-radius: 50%;
+    height: 115px;
+    width:115px;
+}
+
 .us{
     position: relative;
     display: block;

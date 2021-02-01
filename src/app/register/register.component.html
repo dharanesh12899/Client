@@ -4,12 +4,11 @@
         Account <strong>Registered Successfully!! </strong> <a routerLink="">Login</a> to continue.
     </div>
     <div class="login-container">
-        
+        <h4>Create Your Account</h4>
         <form [formGroup]="registerform" class="form" action="">
         
             <div class="form-control-group">
-                <label for="reguser">Username</label>
-                <input formControlName="reguser" type="text" name="reguser" id="reguser">
+                <input formControlName="reguser" type="text" name="reguser" id="reguser" placeholder="Username">
                 <div *ngIf="(f.reguser.touched || submitted) && f.reguser.errors">
                     <div *ngIf="f.reguser.errors!.required">
                         <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter username</span></i>    
@@ -18,10 +17,9 @@
             </div>
         
             <div class="form-control-group">
-                <label for="regmob">Mobile Number</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">+91</span>
-                    <input formControlName="regmob" type="text" name="regmob" id="regmob">
+                    <input formControlName="regmob" type="text" name="regmob" id="regmob" placeholder="Mobile Number">
                 </div>
                 <div *ngIf="(f.regmob.touched || submitted) && f.regmob.errors">
                     <div *ngIf="f.regmob.errors!.required">
@@ -34,39 +32,36 @@
             </div>
 
             <div class="form-control-group">
-                <label for="regpass">Password</label>
-                <input formControlName="regpass" type="password" name="regpass" id="regpass">
-                <div *ngIf="(f.regpass.touched || submitted) && f.regpass.errors">
+                <input formControlName="regpass" type="password" name="regpass" id="regpass" placeholder="Password"><span (click)="togglep()" id="vis" class="vis"><i id="ptog" class="ri-eye-fill"></i></span>
+                <div *ngIf="submitted && f.regpass.errors">
                     <div *ngIf="f.regpass.errors!.required">
-                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter a password</span></i>    
+                        <i style="color:red ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter a password</span></i>    
                     </div>
                     <div *ngIf="f.regpass.errors!.minlength">
-                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span></i>    
+                        <i style="color:red ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span></i>    
                     </div>
                 </div>
             </div>
 
             <div class="form-control-group">
-                <label for="conregpass">Confirm Password</label>
-                <input formControlName="conregpass" type="password" name="conregpass" id="conregpass">
-                <div *ngIf="(f.conregpass.touched || submitted) && f.conregpass.errors">
+                <input formControlName="conregpass" type="password" name="conregpass" id="conregpass" placeholder="Confirm Password"><span (click)="togglecp()" id="vis" class="vis"><i id="cptog" class="ri-eye-fill"></i></span>
+                <div *ngIf="submitted && f.conregpass.errors">
                     <div *ngIf="f.conregpass.errors!.required">
-                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter your confirm password</span></i>    
+                        <i style="color:red ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter your confirm password</span></i>    
                     </div>
                     <div *ngIf="f.conregpass.errors!.minlength">
-                        <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span></i>    
+                        <i style="color:red ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Password must be atleast 8 characters</span></i>    
                     </div>
                 </div>
                 <div *ngIf="match>0">
-                    <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Passwords do not match</span></i>    
+                    <i style="color:red ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true"><span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Passwords do not match</span></i>    
                 </div>
             </div>
         
             <button (click)="reg($event)" class="btn btn-md" type="submit" id="rgb">REGISTER</button>
 
             <div class="other">
-                <p>Forgot Password? <a routerLink="forgot">click here</a></p>
-                <p>Already have an account? <a routerLink="">Login</a></p>
+                <p id="nu"><i class="ri-arrow-left-line"></i><a routerLink=""> Login</a></p>
             </div>
         </form>
     </div>

@@ -15,10 +15,10 @@
                     <h5><a class="nav-link" routerLink="/orders"><strong>My Orders</strong></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
+                    <h5><a class="nav-link" routerLink="/profile"><i class="fa fa-user-circle-o"></i> {{un}}</a></h5>
                 </li>
-                <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/profile">{{un}}</a></h5>
+                <li class="nav-item lot">
+                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
                 </li>
             </ul>
         </div>
@@ -26,13 +26,13 @@
 
     <div class="orders">            
         <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="loading==true else continue" class="current">
-            <div><i class="fa fa-spinner fa-pulse"></i></div>
+            <div><i id="ic" class="fa fa-spinner fa-pulse"></i></div>
             <div><i class='fa fa-boxes'></i></div>
             <div>Loading...</div>
         </div>
         <ng-template #continue>
         <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="or.length<1" class="current">
-            <div><i class="ri-cloud-windy-line"></i></div>
+            <div><i id="ic" class="ri-cloud-windy-line"></i></div>
             <div>Nothing to show yet!!</div> 
             <div>Order something to load our trucks!!</div>
         </div>

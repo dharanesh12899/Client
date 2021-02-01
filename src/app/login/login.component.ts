@@ -33,6 +33,15 @@ export class LoginComponent implements OnInit {
     return this.loginform.controls;
   }
 
+  toggle(){
+    (<HTMLElement>document.getElementById("tog")).classList.toggle("ri-eye-off-fill")
+    if((<HTMLInputElement>document.getElementById("pass")).type=="password"){
+      (<HTMLInputElement>document.getElementById("pass")).setAttribute("type","text");
+    }
+    else{
+    (<HTMLInputElement>document.getElementById("pass")).setAttribute("type","password");
+    }
+  }
   log(e:MouseEvent){
     this.submitted=true;
     if(this.loginform.invalid)
@@ -66,26 +75,14 @@ export class LoginComponent implements OnInit {
             (<HTMLButtonElement>document.getElementById("lgb")).disabled=false;
             (<HTMLButtonElement>document.getElementById("lgb")).innerHTML="LOGIN"
           }   
-        });     
-      /*
-      var db:any= firebase.database();
-      var fuc:any=db.ref().child('user');
-      
-      console.log(fuc)*/
-      /*if( s=firebase.firestore().collection("Users").where("phone","==",p).where("password","==",pa)));}*/
-      
-      /*
-      firebase.auth().signInWithEmailAndPassword(p,pa).then((result)=>{
-        localStorage.setItem('isLoggedIn','true');
-        localStorage.setItem('token',p);
-        this._router.navigate(['/book']);
-    })
-      .catch((error)=>{
-        setTimeout(function(){
-          (<HTMLDivElement>document.getElementById("nope")).style.display="none";
-        },5000);
-        (<HTMLDivElement>document.getElementById("nope")).style.display="block";
-      });*/
-    }
+        }).catch((error)=>{
+          setTimeout(function(){
+            (<HTMLDivElement>document.getElementById("nope")).style.display="none";
+            },5000);
+            (<HTMLDivElement>document.getElementById("nope")).style.display="block";
+            (<HTMLButtonElement>document.getElementById("lgb")).disabled=false;
+            (<HTMLButtonElement>document.getElementById("lgb")).innerHTML="LOGIN"
+        });
+    }     
   }
 }

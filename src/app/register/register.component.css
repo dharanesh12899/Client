@@ -11,11 +11,15 @@
 }
 
 .login .login-container{
-    background-color: white;
+    text-align: center;
     margin-top: 50px;
-    height: auto;
-    padding: 20px 45px;
+    min-height: 400px;
+    max-height: fit-content;
+    padding-top: 40px;
+    padding-left:45px;
+    padding-right:45px;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.685);
     box-shadow: 0 1px 10px rgba(0,0,0,0.5);
     width:400px;
 }
@@ -23,63 +27,80 @@
 .login-container .form-control-group{
     display: flex;
     flex-direction: column;
-    margin-top:15px;
+    margin-top:20px;
+    padding:10px 0px;
 }
 
-.form-control-group .input-group input{
+.form-control-group input{
     outline:none;
-    height:35px;
+    height:45px;
     font-size: 18px;
+    padding: 10px;
     border-radius: 5px;
-    border: 1px solid black;
-    width: 80%;
+    border: 1px solid white;
 }
 
-.form-control-group .input-group-text{
-    height:35px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border: 1px solid black;
-    background-color: #fcb654;
-    color: white;
+.vis{
+    float: right;
+    margin-left: 260px;
+    margin-top: -34px;
+    position: relative;
+    z-index: 2;  
+    cursor: pointer;
 }
-
-input{
-    height:35px;
-    outline:none;
-    border-top-left-radius: 5px;
-    border-radius: 5px;font-size: 18px;
-    border: 1px solid black;
-    width:100%;
-}
-
 
 .form .btn{
-    margin-top: 15px;
-    width:100%;
+    margin-top: 20px;
+    width:75%;
     background-color: #fcb654;
-
 }
 
 .form .btn:hover{
-    background-color: #ff7c1f;
+    background-color: #ff7c1f; 
 }
-
 .form .other{
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .form-control-group input:focus{
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 5px;
+    outline:none;
+}
+
+#nu{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 a{
-    color: #fcb654;
+    color:black;
 }
 a:hover{
     color: #ff7c1f;
 }
+
+
+.form-control-group .input-group input{
+    outline:none;
+    height:45px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid white;
+    width: 82%;
+}
+
+.form-control-group .input-group-text{
+    height:45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid white;
+    background-color: #fcb654;
+    color: white;
+}
+
 
 
 @media only screen and (max-width:400px){

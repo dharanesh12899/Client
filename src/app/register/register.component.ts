@@ -36,6 +36,25 @@ export class RegisterComponent implements OnInit {
     return this.registerform.controls;
   }
 
+  togglep(){
+    (<HTMLElement>document.getElementById("ptog")).classList.toggle("ri-eye-off-fill")
+    if((<HTMLInputElement>document.getElementById("regpass")).type=="password"){
+      (<HTMLInputElement>document.getElementById("regpass")).setAttribute("type","text");
+    }
+    else{
+    (<HTMLInputElement>document.getElementById("regpass")).setAttribute("type","password");
+    }
+  }
+  togglecp(){
+    (<HTMLElement>document.getElementById("cptog")).classList.toggle("ri-eye-off-fill")
+    if((<HTMLInputElement>document.getElementById("conregpass")).type=="password"){
+      (<HTMLInputElement>document.getElementById("conregpass")).setAttribute("type","text");
+    }
+    else{
+    (<HTMLInputElement>document.getElementById("conregpass")).setAttribute("type","password");
+    }
+  }
+
   reg(e:MouseEvent){
     this.submitted=true;
     this.match=0;
@@ -60,6 +79,7 @@ export class RegisterComponent implements OnInit {
           phone:pho,
           password:pass
         });
+
         (<HTMLButtonElement>document.getElementById("rgb")).innerHTML="Account Registered!!!";
         (<HTMLDivElement>document.getElementById("succ")).style.display="block";
     }

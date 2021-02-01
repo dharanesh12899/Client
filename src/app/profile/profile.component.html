@@ -15,11 +15,12 @@
                     <h5><a class="nav-link" routerLink="/orders">My Orders</a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
+                    <h5><a class="nav-link" routerLink="/profile"><strong><i class="fa fa-user-circle-o"></i> {{un}}</strong></a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" routerLink="/profile"><strong>{{un}}</strong></a></h5>
+                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
                 </li>
+                
             </ul>
         </div>
     </nav>
@@ -35,7 +36,14 @@
                 
                 <div class="row unp">
                     <div class=".col-md-3 udp">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <div *ngIf="proload==false else propic"></div>
+                            <img src="{{propic}}" alt="profile pic">
+                        <ng-template #propic>
+                            <i class="fa fa-spinner fa-pulse"></i>
+                        </ng-template>
+                        <div id="npp">
+
+                        </div>
                     </div>
                     <div class="pn"><p>{{un}}</p></div>
                 </div>
