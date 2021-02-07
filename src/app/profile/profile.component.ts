@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   uppro=true;
   upproch:any='';
   file:any;
+  nop=false;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
       
     }).catch((error)=>{
       console.log(error);
+      this.nop=true;
     });
 
     this.ph=localStorage.getItem("phone");
@@ -118,6 +120,7 @@ export class ProfileComponent implements OnInit {
   repro(){
     this.proload=true;
     this.uppro=true;
+    this.nop=true;
     (<HTMLButtonElement>document.getElementById("upb")).innerHTML="Upload";
     (<HTMLElement>document.getElementById("close")).setAttribute("data-dismiss","modal");
     const storage = firebase.storage();

@@ -1,4 +1,4 @@
-.login{
+.register{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     background-size: cover;
 }
 
-.login .login-container{
+.register .reg-container{
     text-align: center;
     margin-top: 50px;
     min-height: 400px;
@@ -24,7 +24,7 @@
     width:400px;
 }
 
-.login-container .form-control-group{
+.reg-container .form-control-group{
     display: flex;
     flex-direction: column;
     margin-top:20px;
@@ -104,7 +104,7 @@ a:hover{
 
 
 @media only screen and (max-width:400px){
-    .login{
+    .register{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -115,7 +115,7 @@ a:hover{
         padding:0px 10px;
     }
     
-    .login .login-container{
+    .register .reg-container{
         background-color: white;
         margin-top: 50px;
         height: fit-content;

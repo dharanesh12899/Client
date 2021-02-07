@@ -6,7 +6,7 @@
 
     <div class="login-container">
         <h4>Welcome Back !</h4>
-        <form [formGroup]="loginform" class="form" action="">
+        <form [formGroup]="loginform" class="form">
         
             <div class="form-control-group">
                 <input formControlName="phone" type="text" name="phone" id="phone" placeholder="Mobile Number" required>
@@ -23,7 +23,7 @@
                 <input formControlName="pass" type="password" name="password" id="pass" placeholder="Password"><span (click)="toggle()" id="vis" class="vis"><i id="tog" class="ri-eye-fill"></i></span>
                 <div *ngIf="(f.pass.touched || submitted) && f.pass.errors">
                     <div *ngIf="f.pass.errors!.required">
-                        <i style="color:tomato ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
+                        <i style="color:tomato ; margin-top: 20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
                             <span style="margin-left:10px; font-family:  Helvetica, Arial, sans-serif;">Please enter password</span>
                         </i>    
                     </div>
