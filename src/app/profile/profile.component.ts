@@ -23,8 +23,11 @@ export class ProfileComponent implements OnInit {
   tot:number=0;
   pen:number=0;
   loading=true;
-  propic:any;
+  propic:any='';
   proload=true;
+  uppro=true;
+  upproch:any='';
+  file:any;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
@@ -32,23 +35,24 @@ export class ProfileComponent implements OnInit {
     this.un = usn;
     this.ph=localStorage.getItem("phone");
     this.pass=localStorage.getItem("pass");
-    this.propic=localStorage.getItem("propic");
+    
    }
 
   ngOnInit(): void {
-    var storage = firebase.storage();
-    var pathReference = storage.ref().child('7010756780/IMG_2526.JPG.jpg');
-    
+
+    const storage = firebase.storage();
+    const pathReference = storage.ref().child(this.ph+"/profile.jpg");
     pathReference.getDownloadURL().then((url)=>{
+      this.proload=false;
       this.propic=url;
+      
     }).catch((error)=>{
-      (<HTMLDivElement>document.getElementById("npp")).setAttribute("class","fa fa-user-circle")
-    })
+      console.log(error);
+    });
 
     this.ph=localStorage.getItem("phone");
     firebase.database().ref("/user/"+this.ph).once("value").then((snapshot)=>{
       this.pass=snapshot.val().password;
-      this.proload=false;
     });
     
     firebase.database().ref("/orderdata/"+this.ph).once("value").then((snapshot)=>{
@@ -72,7 +76,6 @@ export class ProfileComponent implements OnInit {
       cnpa:['',[Validators.required,Validators.minLength(8)]],
     })
     }
-  
   logo(){
     this.authService.logout();
     this._router.navigate([""]);
@@ -80,6 +83,52 @@ export class ProfileComponent implements OnInit {
 
   get f(){
     return this.chform.controls;
+  }
+
+  display(event:any){
+    this.file=event;
+    if (event.target.files && event.target.files[0]) {
+      (<HTMLButtonElement>document.getElementById("upb")).disabled=false
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+          this.upproch = event.target.result;
+          this.uppro=false;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  fn:any;
+
+  uploadpro(){
+    this.fn=this.file.target.files[0];
+    var storage = firebase.storage().ref(this.ph+"/"+"profile.jpg");
+    var task = storage.put(this.fn)
+    task.on('state_changed',(snapshot)=>{
+      (<HTMLButtonElement>document.getElementById("upb")).disabled=true;
+      var p = Math.floor((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+      (<HTMLButtonElement>document.getElementById("upb")).innerHTML="Uploading..."+p+" %";
+      if(p===100){
+        (<HTMLButtonElement>document.getElementById("upb")).innerHTML="Done <i class='ri-check-line'></i> ";
+
+      }
+    })
+  }
+
+  repro(){
+    this.proload=true;
+    this.uppro=true;
+    (<HTMLButtonElement>document.getElementById("upb")).innerHTML="Upload";
+    (<HTMLElement>document.getElementById("close")).setAttribute("data-dismiss","modal");
+    const storage = firebase.storage();
+    const pathReference = storage.ref().child(this.ph+"/profile.jpg");
+    pathReference.getDownloadURL().then((url)=>{
+      this.proload=false;
+      this.propic=url;
+      
+    }).catch((error)=>{
+      console.log(error);
+    });
   }
 
   c1(){

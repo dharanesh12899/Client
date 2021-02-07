@@ -35,17 +35,45 @@
             <div class="up">
                 
                 <div class="row unp">
+
                     <div class=".col-md-3 udp">
-                        <div *ngIf="proload==false else propic"></div>
-                            <img src="{{propic}}" alt="profile pic">
-                        <ng-template #propic>
+                        <div id="ppic" *ngIf="proload==false else propicd">
+                            <img src="{{propic}}" alt="{{propic}}">
+                        </div>
+                        <ng-template #propicd>
                             <i class="fa fa-spinner fa-pulse"></i>
                         </ng-template>
                         <div id="npp">
 
                         </div>
                     </div>
-                    <div class="pn"><p>{{un}}</p></div>
+                    <div class="pn"><p>{{un}}  <span id="proch" class="ri-edit-circle-fill" data-toggle="tooltip" data-toggle="modal" data-target="#uploadpropic" data-placement="top" title="Edit profile picture"></span></p></div>
+                    
+                    <div class="modal fade" id="uploadpropic" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-body">
+
+                                <div class="file-ch">
+                                    <input type="file" id="selected" style="display:none;" (change)="display($event)">
+                                    <button id="myFile" type="button" onclick="document.getElementById('selected').click();">Browse...</button>
+                                    
+                                </div>
+
+                                <div *ngIf="uppro===false" class="udp">
+                                    <img src="{{upproch}}" id="uppropic">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                            
+                                <button type="button" id="close" class="btn btn-secondary" (click)="repro()">Close</button>
+                                <button type="button" id="upb" class="btn btn-warning" (click)="uploadpro()" disabled>Upload</button>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
 
                 <div class="row us">
