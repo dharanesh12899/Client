@@ -1,13 +1,16 @@
 <div class="profile-page container-fluid">
     
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <h3>TKS</h3>
+       
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/home">TKS</a></h5>
+                </li>
                 <li class="nav-item active">
                     <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
                 </li>
@@ -38,6 +41,9 @@
 
                     <div class=".col-md-3 udp">
                         <div id="ppic" *ngIf="proload==false else propicd">
+                            <div class="regularcust" *ngIf="type=='regular'" title="Regular customer">
+                                <i class="ri-vip-crown-2-fill"></i>
+                            </div>
                             <img src="{{propic}}" alt="{{propic}}">
                         </div>
                         <ng-template #propicd>

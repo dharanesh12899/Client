@@ -1,13 +1,15 @@
 <div class="book-page container-fluid">
     
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <h3>TKS</h3>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/home">TKS</a></h5>
+                </li>
                 <li class="nav-item active">
                     <h5><a class="nav-link" routerLink="/book"><strong>Book</strong> <span class="sr-only">(current)</span></a></h5>
                 </li>
@@ -26,14 +28,13 @@
 
     <div class="booking row">
     
-        <div class="add-item col-md-3">
+        <div class="add-item">
 
             <form [formGroup]="angform" class="form">
 
                 <div class="form-control-group">
                     <label for="item">Select Item</label>
-                    <select [ngClass]="{'err':submitted && f.itemsel.errors && f.itemsel.errors!.required}" formControlName="itemsel" id="item" class="ddselect" (change)="price()">
-                        <option value="" checked>Select item to buy</option>
+                    <select formControlName="itemsel" id="item" class="ddselect" (change)="price()">
                         <option value="Gravels">Gravels</option>
                         <option value="Sand">Sand</option>
                         <option value="Cement">Cement</option>
@@ -49,7 +50,7 @@
 
                 <div class="form-control-group">
                     <label for="quantity">Quantity(in tons)</label>
-                    <input [ngClass]="{'err':submitted && f.quantity.errors && f.quantity.errors!.required}" type="number" formControlName="quantity" value="1" (change)="price()" name="quantity" id="quantity" min="1">
+                    <input type="number" formControlName="quantity" value="1" (change)="price()" name="quantity" id="quantity" min="1">
                     <div *ngIf="submitted && f.quantity.errors">
                         <div *ngIf="f.quantity.errors!.required">
                             <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
@@ -93,7 +94,7 @@
 
                 <div class="form-control-group">
                     <label for="time">Delivery Date</label>
-                    <input [ngClass]="{'err':submitted && f.date.errors && f.date.errors!.required}" formControlName="date" type="date" name="time" id="time">
+                    <input formControlName="date" type="date" name="time" id="time" min="{{today}}" max="{{maxdate}}">
                     <div *ngIf="submitted && f.date.errors">
                         <div *ngIf="f.date.errors!.required">
                             <i style="color:red ; margin-top: 10px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
@@ -114,31 +115,30 @@
         
         </div>
     
-        <div class="col-md-1"></div>
-    
-        <div class="added col-md-3">
+        <div class="added">
             <div class="total-title">
                 <h5 id="h">Your List</h5>
                 <h5><div class="total">Total: <span style="color:limegreen">Rs.{{totpr}}.00</span></div></h5>
             </div>
             <div class="book">
                 <div *ngIf="Items.length > 0; else noItem">
-                        <div class="new-item"  *ngFor="let it of Items;let in = index">
-                            <div class="items">
-                                <div class="item-name"><b>Item</b>: {{it.typeselected}}</div>
-                                <div class="item-quantity"><b>Quantity</b>: {{it.quantity}}</div>
-                                <div class="item-address"><b>Address</b>: {{it.address}}</div>
-                                <div class="item-area"><b>Area</b>: {{it.area}}</div>
-                                <div class="item-time"><b>Delivery</b>: {{it.deliverydate}}</div>
-                                <div class="item-time"><b>Price</b>: Rs {{it.price}}.00</div>
-                            </div>
-                            <div class="delete-btn">
-                                <button class="btn btn-sm btn-danger" (click)="delete(it.id)">X</button>
-                            </div>
+                    <div class="new-item"  *ngFor="let it of Items;let in = index">
+                        <div class="items">
+                            <div class="item-name"><b>Item:</b><br>{{it.typeselected}}</div>
+                            <div class="item-quantity"><b>Quantity:</b><br>{{it.quantity}}</div>
+                            <div class="item-address"><b>Address:</b><br>{{it.address}}</div>
+                            <div class="item-area"><b>Area:</b><br>{{it.area}}</div>
+                            <div class="item-time"><b>Delivery:</b><br>{{it.deliverydate}}</div>
+                            <div class="item-price"><b>Price:</b><br>Rs {{it.price}}.00</div>
+                        </div>
+                        <div class="delete-btn">
+                            <button class="btn btn-sm btn-danger mini" (click)="delete(it.id)"><i class="ri-delete-bin-6-line"></i></button>
                         </div>
                     </div>
+                </div>
                 <ng-template #noItem>Add Items to View Your List Here</ng-template>
             </div>
+
             <div *ngIf="Items.length == 0; else enable">
                 <button class="btn or" disabled>Place Order</button>
             </div>
@@ -148,5 +148,5 @@
         </div>
 
     </div>
-    <div id="snackbar">Your order has been placed successfully!! Go to Your Orders page to view more details</div>
+    <div id="snackbar">Your order has been placed successfully!! Go to My Orders page to view more details</div>
 </div>

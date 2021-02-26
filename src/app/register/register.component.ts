@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(private _router: Router,private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('isLoggedIn')!="false"){
+    if(localStorage.getItem('isLoggedIn')!=="false"){
       this._router.navigate(['book']);
       return;
     }

@@ -10,6 +10,7 @@ import { BookComponent } from './book/book.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { OrdersComponent } from './orders/orders.component';
     BookComponent,
     ProfileComponent,
     OrdersComponent,
+    HomeComponent,
 
   ],
   imports: [

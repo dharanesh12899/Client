@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   upproch:any='';
   file:any;
   nop=false;
+  type:any;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
     this.ph=localStorage.getItem("phone");
     firebase.database().ref("/user/"+this.ph).once("value").then((snapshot)=>{
       this.pass=snapshot.val().password;
+      this.type=snapshot.val().type;
     });
     
     firebase.database().ref("/orderdata/"+this.ph).once("value").then((snapshot)=>{

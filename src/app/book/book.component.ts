@@ -22,12 +22,14 @@ export class BookComponent implements OnInit {
   un:any;
   phone:any = localStorage.getItem("phone");
   angform!: FormGroup;
-  
+  today:any;
+  maxdate:any;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
     usn = usn?.charAt(0).toUpperCase() + usn.slice(1);
     this.un = usn;
+    
   }
 
   
@@ -39,6 +41,9 @@ export class BookComponent implements OnInit {
       date:['',Validators.required],
       area:['',Validators.required],
     })
+    this.today=new Date(new Date().getTime()+(2*24*60*60*1000)).toISOString().slice(0,10);
+    this.maxdate=new Date(new Date().getTime()+(7*24*60*60*1000)).toISOString().slice(0,10);
+    console.log(this.today);
   }
   
   logo(){
@@ -76,7 +81,6 @@ export class BookComponent implements OnInit {
     if(this.angform.invalid)
       return;
     var id=this.generateID();
-    alert(id);
     var typesel=(<HTMLInputElement>document.getElementById("item")).value;
     var quant=parseInt((<HTMLInputElement>document.getElementById("quantity")).value);
     var addr=(<HTMLInputElement>document.getElementById("address")).value;
@@ -122,6 +126,5 @@ export class BookComponent implements OnInit {
     (<HTMLButtonElement>document.getElementById("place")).innerHTML="Place Order";
     this.Items =[];
   }
-    
   }
 }

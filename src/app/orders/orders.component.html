@@ -1,13 +1,16 @@
 <div class="orders-page container-fluid">
     
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <h3>TKS</h3>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/home">TKS</a></h5>
+                </li>
                 <li class="nav-item active">
                     <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
                 </li>
@@ -24,20 +27,40 @@
         </div>
     </nav>
 
-    <div class="orders">            
+    <div class="orders">
+
+        <div style='padding:5px' class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="flase">
+                <i class="ri-filter-2-line"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="filter">
+                <a class="dropdown-item" (click)="nofilter()">Clear filter</a>
+                <div class="dropdown-header" style="border-bottom: 1px solid gray;">Status filter</div>
+                <a class="dropdown-item" (click)="statusfilter('Processing')">Processing</a>
+                <a class="dropdown-item" (click)="statusfilter('Approved')">Approved</a>
+                <a class="dropdown-item" (click)="statusfilter('Delivered')">Delivered</a>
+                <div class="dropdown-header" style="border-bottom: 1px solid gray;">Item filter</div>
+                <a class="dropdown-item" (click)="itemfilter('Cement')">Cement</a>
+                <a class="dropdown-item" (click)="itemfilter('Sand')">Sand</a>
+                <a class="dropdown-item" (click)="itemfilter('Gravels')">Gravels</a>
+            </div>
+        </div>    
+
         <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="loading==true else continue" class="current">
             <div><i id="ic" class="fa fa-spinner fa-pulse"></i></div>
             <div><i class='fa fa-boxes'></i></div>
             <div>Loading...</div>
         </div>
-        <ng-template #continue>
-        <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="or.length<1" class="current">
-            <div><i id="ic" class="ri-cloud-windy-line"></i></div>
-            <div>Nothing to show yet!!</div> 
-            <div>Order something to load our trucks!!</div>
-        </div>
 
-        <div *ngFor="let i of or" class="current">
+        <ng-template #continue>
+            <div>
+            <div style="display:flex;text-align: center;justify-content: center; align-items: center;flex-direction: column;" *ngIf="or.length<1" class="current">
+                <div><i id="ic" class="ri-cloud-windy-line"></i></div>
+                <div>Nothing to show yet!!</div> 
+                <div>Order something to load our trucks!!</div>
+            </div>
+
+            <div *ngFor="let i of or" class="current">
 
                 <div class="col-md-3 one">
                     <div class="lab">{{i.id}}</div>
@@ -84,7 +107,7 @@
                     <div class="fet price"><strong>Rs. {{i.price}}</strong></div>
                 </div>
 
-                <div *ngIf="(i.status=='Processing'|| i.status=='Approved')" class="col-3 ten" >
+                <div *ngIf="(i.status=='Processing' || i.status=='Approved')" class="col-3 ten" >
                     <div class="lab">Delivery date </div>
                     <div class="fet">{{i.date}}</div>
                 </div>
@@ -93,6 +116,28 @@
                     <div class="lab">Delivered on </div>
                     <div class="fet">{{i.date}}</div>
                 </div>
+                
+                <div *ngIf="(i.status=='Processing')" class="col-3 cancel">
+                    <button class="btn btn-md btn-danger" (click)="cancel(i.id)">Cancel this order</button>
+                </div>
+            </div>
+        </div>
+        </ng-template>
+        <div class="summary" id="summary">
+            <div class="summary-details">
+                <div class="del-head">
+                    Are you sure you want to cancel this order
+                </div>
+                <div style="display:flex;align-items: center;justify-content: center;">
+                    <div><i style="margin-left: 5px;font-size:14px;color:gray" class="ri-information-line"></i></div>
+                    <div style="margin-left: 5px;font-size:14px;color:gray;padding-bottom:2px">Orders cannot be cancelled once Approved</div>
+                </div>
+                <div class="action">
+                    <button class="btn btn-md btn-dark" (click)="noact()">No</button>
+                    <button class="btn btn-md btn-danger" (click)="cancelorder()">Yes</button>
+                </div>
+            </div>
+        </div>
     </div>
-    </ng-template>
+    
 </div>

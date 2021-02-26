@@ -1,0 +1,121 @@
+<div class="home-page container-fluid">
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/home"><strong>TKS</strong></a></h5>
+                </li>
+                <li class="nav-item active">
+                    <h5><a class="nav-link" routerLink="/book">Book <span class="sr-only">(current)</span></a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/orders">My Orders</a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/profile"><i class="fa fa-user-circle-o"></i> {{un}}</a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5 style="cursor: pointer;"><a class="nav-link" (click)="logo()">Log Out</a></h5>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <div id="snackbar">We got your feedback! Have a great day ahead!</div>
+    <div class="banner">
+        <div class="image">
+            <img src = "../../assets/wallpaperflare.com_wallpaper.jpg">
+        </div>
+        <div class="con">
+            <h1><b>TKS</b></h1>
+            <h6>One stop solution for all your construction raw material needs</h6>
+            <button class="btn btn-lg btn-primary" routerLink="/book">BOOK NOW</button>
+        </div>
+    </div>
+
+    <div class="services">
+
+        <div class="vec">
+            <img src="../../assets/quarry.jpg" alt="quarry">
+            <h4><b>You ask. We provide</b></h4>
+            
+        </div>
+        
+        <div class="ser">
+
+            <div class="sertype1">
+                <img src="../../assets/sand.png" alt="sand">
+                <h6>Sand</h6>
+            </div>
+            
+            <div class="sertype">
+                <img src="../../assets/cement.png" alt="cement">
+                <h6>Cement</h6>
+            </div>
+            
+            <div class="sertype">
+                <img src="../../assets/water.png" alt="water">
+                <h6>Water</h6>
+            </div>
+            
+            <div class="sertype1">
+                <img src="../../assets/stone.png" alt="gravels">
+                <h6>Gravels</h6>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="feedback">
+        
+        <div class="feedform">
+            <label for="feed">Your Valuable Feeedback</label>
+            <textarea name="feed" id="feed" cols="50" rows="8"></textarea>
+           
+
+            <label for="percent">How much will you suggest our service to people you know</label>
+            <div class="range-wrap">
+                <input type="range" id="feedper" class="range" value="50" (input)="setBubble()">
+                <output id="feedbackop" class="bubble"></output>
+              </div>
+
+            <button class="btn btn-md btn-warning" (click)="feedform()">Send</button>
+        </div>
+
+
+        <div class="feedbanner">
+            <h4><b>We Value Your Feedback</b></h4>
+            <img src="../../assets/feedback.jpg" alt="feed-banner">
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="contact">
+            <h4 style="color:#5E4DB7">Ready to get Started?</h4>
+            <h4 style="color: #AB90EA;">Talk to us today!</h4>
+        </div>
+        <div class="foot-content">
+
+            <div class="det">
+                <div><i class="ri-phone-fill"></i></div>
+               
+            </div>
+            <div class="det">
+                <div><i class="ri-mail-fill"></i></div>
+                
+            </div>
+            <div class="det">
+                <div><i class="ri-facebook-fill"></i></div>
+            </div>
+        </div>
+
+        <h6>Made with <i style="color: pink;font-size:14px" class="ri-heart-fill"></i> for you!</h6>
+    </div>
+</div>

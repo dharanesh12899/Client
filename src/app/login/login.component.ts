@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('isLoggedIn')!="false"){
-      this._router.navigate(['book']);
+      this._router.navigate(['home']);
     }
 
     this.loginform = this.fb.group({
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("phone",phone);
             localStorage.setItem("pass",pass);
 
-            this._router.navigate(['/book']);
+            this._router.navigate(['/home']);
           }
 
           else{
