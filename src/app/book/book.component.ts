@@ -3,6 +3,7 @@ import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import{FormGroup,FormBuilder,Validators, FormControl} from '@angular/forms';
 import {Items} from 'src/app/interfaces/items';
+import {prods} from 'src/app/interfaces/products'
 import * as firebase from 'firebase';
 
 
@@ -16,7 +17,6 @@ export class BookComponent implements OnInit {
   
   est:number=0;
   totpr:number=0;
-  pr=[{'item':'Gravels','price':10000},{'item':'Sand','price':20000},{'item':'Cement','price':30000}];
   Items:Items[]=[];
   submitted=false;
   un:any;
@@ -24,6 +24,8 @@ export class BookComponent implements OnInit {
   angform!: FormGroup;
   today:any;
   maxdate:any;
+  products:prods[]=[];
+  pay=false;
 
   constructor(private _router: Router,private authService:AuthService,private fb:FormBuilder) {
     var usn:any = localStorage.getItem("username");
@@ -44,6 +46,11 @@ export class BookComponent implements OnInit {
     this.today=new Date(new Date().getTime()+(2*24*60*60*1000)).toISOString().slice(0,10);
     this.maxdate=new Date(new Date().getTime()+(7*24*60*60*1000)).toISOString().slice(0,10);
     console.log(this.today);
+    firebase.database().ref("/products/").once("value").then((snapshot)=>{
+      snapshot.forEach((child)=>{
+        this.products.push({"item":child.val().item,"price":child.val().price,"availability":child.val().availability});
+      })
+    })
   }
   
   logo(){
@@ -66,9 +73,9 @@ export class BookComponent implements OnInit {
     if(typesel==="")
       this.est=0;
     else{
-      var p=this.pr.findIndex(x => x.item === typesel);
+      var p=this.products.findIndex(x => x.item === typesel);
       var quant=parseInt((<HTMLInputElement>document.getElementById("quantity")).value);
-      this.est= quant*this.pr[p].price;
+      this.est= quant*this.products[p].price;
       if(isNaN(this.est)){
         this.est=0;
       }
@@ -106,25 +113,36 @@ export class BookComponent implements OnInit {
   makeOrder(){
     (<HTMLButtonElement>document.getElementById("place")).disabled=true;
     (<HTMLButtonElement>document.getElementById("place")).innerHTML="Placing your order!  <i class='fa fa-spinner fa-pulse'></i>";
-    
-    for(let i=0;i<this.Items.length;i++){
-    firebase.database().ref("orderdata/"+this.phone+"/"+this.Items[i].id).set({
-      address:this.Items[i].address,
-      area:this.Items[i].area,
-      deliverydate:this.Items[i].deliverydate,
-      item:this.Items[i].typeselected,
-      orderdate:this.Items[i].orderdate,
-      orderid:this.Items[i].id,
-      price:this.Items[i].price,
-      quantity:this.Items[i].quantity,
-      status:"Processing",
-    });
-    var x = <HTMLDivElement>document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    (<HTMLButtonElement>document.getElementById("place")).disabled=false;
-    (<HTMLButtonElement>document.getElementById("place")).innerHTML="Place Order";
-    this.Items =[];
+    this.pay=true;
   }
+
+  payment(){
+    for(var i=0;i<this.Items.length;i++){
+      firebase.database().ref("orderdata/"+this.phone+"/"+this.Items[i].id).set({
+        address:this.Items[i].address,
+        area:this.Items[i].area,
+        deliverydate:this.Items[i].deliverydate,
+        item:this.Items[i].typeselected,
+        orderdate:this.Items[i].orderdate,
+        orderid:this.Items[i].id,
+        price:this.Items[i].price,
+        quantity:this.Items[i].quantity,
+        status:"Processing",
+      })
+    }
+    if(i==this.Items.length){
+      var x = <HTMLDivElement>document.getElementById("snackbar");
+      x.className = "show";
+      this.pay=false;
+      this.Items =[];
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      (<HTMLButtonElement>document.getElementById("place")).disabled=false;
+      this.pay=false;
+      (<HTMLButtonElement>document.getElementById("place")).innerHTML="Place Order";
+    }
+}
+
+  cancel(){
+    this.pay=false;
   }
 }

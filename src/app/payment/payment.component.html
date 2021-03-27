@@ -1,0 +1,28 @@
+<div class="pay-page container-fluid">
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/home">TKS</a></h5>
+                </li>
+                <li class="nav-item active">
+                    <h5><a class="nav-link" routerLink="/book"><strong>Book</strong> <span class="sr-only">(current)</span></a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/orders">My Orders</a></h5>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" routerLink="/profile"><i class="fa fa-user-circle-o"></i> {{un}}</a></h5>
+                </li>
+                <li class="nav-item lot">
+                    <h5><a class="nav-link" (click)="logo()">Log Out</a></h5>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

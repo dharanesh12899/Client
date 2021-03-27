@@ -26,7 +26,7 @@
         </div>
     </nav>
 
-    <div class="booking row">
+    <div id="bopa" *ngIf="pay==false" class="booking row">
     
         <div class="add-item">
 
@@ -35,9 +35,7 @@
                 <div class="form-control-group">
                     <label for="item">Select Item</label>
                     <select formControlName="itemsel" id="item" class="ddselect" (change)="price()">
-                        <option value="Gravels">Gravels</option>
-                        <option value="Sand">Sand</option>
-                        <option value="Cement">Cement</option>
+                        <ng-container *ngFor="let i of products"><option *ngIf="i.availability=='available'" option value={{i.item}}>{{i.item}}</option></ng-container>
                     </select>
                     <div *ngIf="submitted && f.itemsel.errors">
                         <div *ngIf="f.itemsel.errors!.required">
@@ -50,7 +48,7 @@
 
                 <div class="form-control-group">
                     <label for="quantity">Quantity(in tons)</label>
-                    <input type="number" formControlName="quantity" value="1" (change)="price()" name="quantity" id="quantity" min="1">
+                    <input type="number" formControlName="quantity" value=1 (change)="price()" name="quantity" id="quantity" min="1">
                     <div *ngIf="submitted && f.quantity.errors">
                         <div *ngIf="f.quantity.errors!.required">
                             <i style="color:red ; margin-top: -20px; font-size: 14px;" class="fa fa-exclamation-circle" aria-hiden="true">
@@ -145,6 +143,61 @@
             <ng-template #enable>
                 <button id="place" class="btn or" (click)="makeOrder()">Place Order</button>
             </ng-template>
+        </div>
+
+    </div>
+    <div id="paypa" *ngIf="pay==true" class="payment">
+        
+        <div class="jumbotron">
+            <div class="amount">
+                <div><b>Total Amount</b></div>
+                <div>Rs 4500</div>
+            </div>
+            <div class="p-g">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pr" id="cardpay" value="cardpay" checked>
+                    <label class="form-check-label" for="cardpay">
+                      Card Payment
+                    </label>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="pr" id="cname" placeholder="Cardholder Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="cno" placeholder="Card Number" maxlength="16" minlength="16">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="month" class="form-control" id="exp" placeholder="Expiration">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="cvv" placeholder="CVV" maxlength="3" minlength="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pr" id="upi" value="upi" >
+                    <label class="form-check-label" for="upi">
+                      UPI Payment
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col">QR</div>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pr" id="split" value="split" >
+                    <label class="form-check-label" for="split">
+                      Split Payment <small style="color:gray">(Pay at the end of this week)</small>
+                    </label>
+                </div>
+                <div class="row">
+                    <button class="col btn btn-md btn-warning" (click)="payment()">Checkout</button>
+                    <div class="col"></div>
+                    <button class="col btn btn-md btn-danger" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
         </div>
 
     </div>
